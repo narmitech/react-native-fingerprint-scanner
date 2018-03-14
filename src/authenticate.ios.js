@@ -6,7 +6,7 @@ const { ReactNativeFingerprintScanner } = NativeModules;
 export default ({ description = ' ', fallbackEnabled = true }) => {
   return new Promise((resolve, reject) => {
     ReactNativeFingerprintScanner.authenticate(description, fallbackEnabled, error => {
-      if (error) return reject(createError(error.message));
+      if (error) return reject(createError(error.code, error.message));
       resolve(true);
     });
   });

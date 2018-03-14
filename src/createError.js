@@ -13,9 +13,10 @@ const ERRORS = {
 
 class FingerprintScannerError extends Error {
 
-  constructor({ name, message }) {
+  constructor({ name, message, type }) {
     super(message);
     this.name = name || this.constructor.name;
+    this.type = type;
     if (typeof Error.captureStackTrace === 'function') {
       Error.captureStackTrace(this, this.constructor);
     } else {
@@ -24,4 +25,4 @@ class FingerprintScannerError extends Error {
   }
 }
 
-export default (name) => new FingerprintScannerError({ name, message: ERRORS[name] });
+export default (name, type) => new FingerprintScannerError({ name, message: ERRORS[name], type });

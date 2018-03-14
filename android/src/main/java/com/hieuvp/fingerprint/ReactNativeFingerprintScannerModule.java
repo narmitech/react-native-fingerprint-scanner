@@ -70,7 +70,7 @@ public class ReactNativeFingerprintScannerModule extends ReactContextBaseJavaMod
     public void authenticate(final Promise promise) {
         final String errorMessage = getErrorMessage();
         if (errorMessage != null) {
-            promise.reject(errorMessage, errorMessage);
+            promise.reject(errorMessage, "Fingerprint Authentication");
             ReactNativeFingerprintScannerModule.this.release();
             return;
         }
@@ -91,7 +91,7 @@ public class ReactNativeFingerprintScannerModule extends ReactContextBaseJavaMod
 
             @Override
             public void onFailed() {
-                promise.reject("AuthenticationFailed", "AuthenticationFailed");
+                promise.reject("AuthenticationFailed", "Fingerprint Authentication");
                 ReactNativeFingerprintScannerModule.this.release();
             }
         });
@@ -108,9 +108,9 @@ public class ReactNativeFingerprintScannerModule extends ReactContextBaseJavaMod
     public void isSensorAvailable(final Promise promise) {
         String errorMessage = getErrorMessage();
         if (errorMessage != null) {
-            promise.reject(errorMessage, errorMessage);
+            promise.reject(errorMessage, "Fingerprint Authentication");
         } else {
-            promise.resolve("Fingerprint");
+            promise.resolve("Fingerprint Authentication");
         }
     }
 }
